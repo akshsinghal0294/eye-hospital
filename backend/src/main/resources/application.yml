@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/EYE_HOSPITAL
+    username: postgres
+    password: manage
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+jwt:
+  secret: eyeHospitalJwtSecretKeyChangeThisInProduction123456789
+  expiration: 86400000
+
+file:
+  upload-dir: C:/eye-hospital/uploads
+
+logging:
+  level:
+    com.eyehospital: DEBUG
