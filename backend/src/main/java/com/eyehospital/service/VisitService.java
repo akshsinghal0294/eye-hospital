@@ -54,6 +54,7 @@ public class VisitService {
                 .status(VisitStatus.ACTIVE)
                 .expiryDate(LocalDate.now().plusDays(7))
                 .createdBy(currentUser)
+                .visitDate(LocalDate.now())
                 .build();
 
         visit = visitRepository.save(visit);

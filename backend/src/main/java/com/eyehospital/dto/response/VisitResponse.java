@@ -33,7 +33,7 @@ public class VisitResponse {
 
     private PaymentMode paymentMode;
 
-    private LocalDateTime visitDate;
+    private LocalDate visitDate;
 
     private LocalDate expiryDate;
 

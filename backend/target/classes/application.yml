@@ -27,3 +27,6 @@ file:
 logging:
   level:
     com.eyehospital: DEBUG
+  file:
+    name: logs/EYE-HOSPITAL.log
+

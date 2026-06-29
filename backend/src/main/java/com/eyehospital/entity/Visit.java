@@ -44,8 +44,8 @@ public class Visit {
     @Enumerated(EnumType.STRING)
     private PaymentMode paymentMode;
 
-    @CreationTimestamp
-    private LocalDateTime visitDate;
+
+    private LocalDate visitDate;
 
     private LocalDate expiryDate;
 

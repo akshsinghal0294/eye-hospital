@@ -34,8 +34,9 @@ public class VisitController {
      */
     @PostMapping("/process/{mobile}")
     public ResponseEntity<ApiResponse<VisitResponse>> processReceptionFlow(
-            @PathVariable String mobile,
-            @Valid @RequestBody VisitRequest request) {
+           
+        @PathVariable String mobile,
+         @Valid @RequestBody VisitRequest request) {
 
         VisitResponse response =
                 visitService.processReceptionFlow(mobile, request);
