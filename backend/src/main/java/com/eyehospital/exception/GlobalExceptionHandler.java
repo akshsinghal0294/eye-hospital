@@ -46,9 +46,13 @@ public class GlobalExceptionHandler {
                 .data(null)
                 .build();
 
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(response);
+                return ResponseEntity.badRequest().body(
+                        ApiResponse.builder()
+                                .success(false)
+                                .message(ex.getMessage())
+                                .data(ex.getData())
+                                .build()
+                );
     }
 
     /**

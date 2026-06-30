@@ -178,8 +178,28 @@ public class VisitService {
             return visit;
         }
 
-        throw new BusinessException("VISIT_EXPIRED");
+        throw new BusinessException("VISIT_EXPIRED", visit);
     }
+
+
+    public VisitResponse createNewVisit(
+        String mobile,
+        VisitRequest request) {
+
+    Patient patient = patientRepository.findByMobile(mobile)
+            .orElseThrow(() ->
+                    new ResourceNotFoundException(
+                            "Patient not found with mobile: " + mobile));
+
+    if (!patient.getId().equals(request.getPatientId())) {
+        throw new BusinessException(
+                "Patient ID does not match the provided mobile number");
+    }
+
+    return createVisit(request);
+}
+
+
 
     /**
      * Entity → DTO Mapper.

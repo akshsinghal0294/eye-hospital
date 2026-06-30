@@ -106,5 +106,25 @@ public class VisitController {
                         .build()
         );
     }
+
+
+    @PostMapping("/new/{mobile}")
+    public ResponseEntity<ApiResponse<VisitResponse>> createNewVisit(
+    
+            @PathVariable String mobile,
+    
+            @Valid @RequestBody VisitRequest request) {
+    
+        VisitResponse response =
+                visitService.createNewVisit(mobile, request);
+    
+        return ResponseEntity.ok(
+                ApiResponse.<VisitResponse>builder()
+                        .success(true)
+                        .message("New visit created successfully.")
+                        .data(response)
+                        .build()
+        );
+    }
 }
 
