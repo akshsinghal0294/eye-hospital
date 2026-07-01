@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import {
   Box,
@@ -7,14 +8,19 @@ import {
   Card,
   CardContent,
   Chip,
+  CircularProgress,
   Grid,
   Stack,
   Table,
   TableBody,
   TableCell,
+  TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
+  TextField,
   Typography,
+  Paper,
 } from "@mui/material";
 
 import PeopleIcon from "@mui/icons-material/People";
@@ -23,23 +29,29 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-
+import { getAllPatients } from "../../api/patientApi";
 import { useAuth } from "../../context/AuthContext";
 
 const ReceptionDashboard = () => {
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const { user } = useAuth();
 
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
+  const [patients, setPatients] = useState([]);
 
-    return () => clearInterval(interval);
-  }, []);
+  const [loading, setLoading] = useState(false);
+
+  const [page, setPage] = useState(0);
+
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const [totalRows, setTotalRows] = useState(0);
+
+  const [fromDate, setFromDate] = useState("");
+
+  const [toDate, setToDate] = useState("");
 
   const statCards = [
     {
@@ -68,8 +80,76 @@ const ReceptionDashboard = () => {
     },
   ];
 
+  const loadPatients = async () => {
+
+    try {
+
+      setLoading(true);
+
+      const response = await getAllPatients(
+        page,
+        rowsPerPage,
+        fromDate,
+        toDate
+    );
+
+    setPatients(response.data.content);
+
+    setTotalRows(response.data.totalElements);
+
+    } catch (error) {
+
+      console.error(error);
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  };
+
+  useEffect(() => {
+
+    loadPatients();
+
+  }, [page, rowsPerPage]);
+
+  useEffect(() => {
+
+    const interval = setInterval(() => {
+
+      setCurrentTime(new Date());
+
+    }, 1000);
+
+    return () => clearInterval(interval);
+
+  }, []);
+
+  const handleSearch = () => {
+
+    setPage(0);
+
+    loadPatients();
+
+  };
+
+  const handleChangePage = (event, newPage) => {
+
+    setPage(newPage);
+
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+
+    setRowsPerPage(parseInt(event.target.value, 10));
+
+    setPage(0);
+
+  };
   return (
-    <Box>
+    <Box p={3}>
 
       {/* Header */}
 
@@ -77,23 +157,36 @@ const ReceptionDashboard = () => {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        sx={{ mb: 4 }}
+        mb={4}
       >
+
         <Box>
-          <Typography variant="h4">
+
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+          >
             Welcome, {user?.fullName}
           </Typography>
 
-          <Typography color="text.secondary">
+          <Typography
+            color="text.secondary"
+          >
             {currentTime.toLocaleDateString()} |{" "}
             {currentTime.toLocaleTimeString()}
           </Typography>
+
         </Box>
 
         <Chip
           label="RECEPTIONIST"
           color="primary"
+          sx={{
+            fontWeight: "bold",
+            px: 2
+          }}
         />
+
       </Stack>
 
       {/* Statistics */}
@@ -101,23 +194,28 @@ const ReceptionDashboard = () => {
       <Grid
         container
         spacing={3}
-        sx={{ mb: 4 }}
+        mb={4}
       >
+
         {statCards.map((card) => (
+
           <Grid
             item
             xs={12}
+            sm={6}
             md={3}
             key={card.title}
           >
+
             <Card
-              elevation={2}
+              elevation={3}
               sx={{
                 borderLeft: 6,
                 borderColor: card.borderColor,
-                borderRadius: 2,
+                borderRadius: 3
               }}
             >
+
               <CardContent>
 
                 <Stack
@@ -125,136 +223,295 @@ const ReceptionDashboard = () => {
                   spacing={2}
                   alignItems="center"
                 >
+
                   {card.icon}
 
                   <Box>
-                    <Typography variant="h4">
+
+                    <Typography
+                      variant="h4"
+                      fontWeight="bold"
+                    >
                       {card.value}
                     </Typography>
 
-                    <Typography color="text.secondary">
+                    <Typography
+                      color="text.secondary"
+                    >
                       {card.title}
                     </Typography>
+
                   </Box>
 
                 </Stack>
 
               </CardContent>
+
             </Card>
+
           </Grid>
+
         ))}
+
       </Grid>
 
       {/* Quick Actions */}
 
       <Card
-        elevation={2}
+        elevation={3}
         sx={{
-          p: 3,
-          borderRadius: 2,
-          mb: 4,
+          borderRadius: 3,
+          mb: 4
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{ mb: 3 }}
-        >
-          Quick Actions
-        </Typography>
 
-        <Stack
-          direction={{
-            xs: "column",
-            md: "row",
-          }}
-          spacing={2}
-        >
-          <Button
-            variant="contained"
-            size="large"
-            startIcon={<PersonAddIcon />}
-            onClick={() =>
-              navigate("/reception/register-patient")
-            }
-            sx={{
-              flex: 1,
-              py: 1.5,
-            }}
-          >
-            Register New Patient
-          </Button>
+        <CardContent>
 
-          <Button
-            variant="contained"
-            color="success"
-            size="large"
-            startIcon={<AssignmentIcon />}
-            onClick={() =>
-              navigate("/reception/process-visit")
-            }
-            sx={{
-              flex: 1,
-              py: 1.5,
-            }}
+          <Typography
+            variant="h6"
+            mb={3}
+            fontWeight="bold"
           >
-            Process Visit
-          </Button>
-        </Stack>
+            Quick Actions
+          </Typography>
+
+          <Stack
+            direction={{
+              xs: "column",
+              md: "row"
+            }}
+            spacing={2}
+          >
+
+            <Button
+              fullWidth
+              variant="contained"
+              size="large"
+              startIcon={<PersonAddIcon />}
+              sx={{ py: 1.5 }}
+              onClick={() =>
+                navigate("/reception/register-patient")
+              }
+            >
+              Register New Patient
+            </Button>
+
+            <Button
+              fullWidth
+              color="success"
+              variant="contained"
+              size="large"
+              startIcon={<AssignmentIcon />}
+              sx={{ py: 1.5 }}
+              onClick={() =>
+                navigate("/reception/process-visit")
+              }
+            >
+              Process Visit
+            </Button>
+
+          </Stack>
+
+        </CardContent>
+
       </Card>
+            {/* Recent Patients */}
 
-      {/* Recent Activity */}
-
-      <Card
-        elevation={2}
+            <Card
+        elevation={3}
         sx={{
-          borderRadius: 2,
+          borderRadius: 3,
         }}
       >
         <CardContent>
 
           <Typography
             variant="h6"
-            sx={{ mb: 2 }}
+            fontWeight="bold"
+            mb={3}
           >
-            Recent Activity
+            Recent Patients
           </Typography>
 
-          <Table>
+          {/* Filters */}
 
-            <TableHead>
-              <TableRow>
-                <TableCell>OPD Number</TableCell>
-                <TableCell>Patient Name</TableCell>
-                <TableCell>Mobile</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Visit Date</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
+          <Stack
+            direction={{
+              xs: "column",
+              md: "row",
+            }}
+            spacing={2}
+            mb={3}
+          >
 
-            <TableBody>
-              <TableRow>
-                <TableCell
-                  colSpan={6}
-                  align="center"
-                >
-                  <Typography
-                    color="text.secondary"
-                    sx={{ py: 4 }}
-                  >
-                    No recent visits today
-                  </Typography>
-                </TableCell>
-              </TableRow>
-            </TableBody>
+            <TextField
+              label="From Date"
+              type="date"
+              value={fromDate}
+              onChange={(e) => setFromDate(e.target.value)}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
 
-          </Table>
+            <TextField
+              label="To Date"
+              type="date"
+              value={toDate}
+              onChange={(e) => setToDate(e.target.value)}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+
+            <Button
+              variant="contained"
+              onClick={handleSearch}
+            >
+              Search
+            </Button>
+
+          </Stack>
+
+          {
+            loading ?
+
+              <Box
+                display="flex"
+                justifyContent="center"
+                py={5}
+              >
+                <CircularProgress />
+              </Box>
+
+              :
+
+              <TableContainer component={Paper}>
+
+                <Table>
+
+                  <TableHead>
+
+                    <TableRow>
+
+                      <TableCell>
+                        <b>ID</b>
+                      </TableCell>
+
+                      <TableCell>
+                        <b>Patient Name</b>
+                      </TableCell>
+
+                      <TableCell>
+                        <b>Mobile</b>
+                      </TableCell>
+
+                      <TableCell>
+                        <b>Gender</b>
+                      </TableCell>
+
+                      <TableCell>
+                        <b>Date Of Birth</b>
+                      </TableCell>
+
+                      <TableCell>
+                        <b>Created At</b>
+                      </TableCell>
+
+                    </TableRow>
+
+                  </TableHead>
+
+                  <TableBody>
+
+                    {
+                      patients.length > 0 ?
+
+                        patients.map((patient) => (
+
+                          <TableRow
+                            hover
+                            key={patient.id}
+                          >
+
+                            <TableCell>
+                              {patient.id}
+                            </TableCell>
+
+                            <TableCell>
+                              {patient.name}
+                            </TableCell>
+
+                            <TableCell>
+                              {patient.mobile}
+                            </TableCell>
+
+                            <TableCell>
+                              {patient.gender}
+                            </TableCell>
+
+                            <TableCell>
+                              {patient.dateOfBirth}
+                            </TableCell>
+
+                            <TableCell>
+                              {
+                                new Date(patient.createdAt)
+                                  .toLocaleString()
+                              }
+                            </TableCell>
+
+                          </TableRow>
+
+                        ))
+
+                        :
+
+                        <TableRow>
+
+                          <TableCell
+                            align="center"
+                            colSpan={6}
+                          >
+
+                            <Typography
+                              color="text.secondary"
+                              py={3}
+                            >
+                              No Patients Found
+                            </Typography>
+
+                          </TableCell>
+
+                        </TableRow>
+
+                    }
+
+                  </TableBody>
+
+                </Table>
+
+              </TableContainer>
+
+          }
+                    <TablePagination
+            component="div"
+            count={totalRows}
+            page={page}
+            rowsPerPage={rowsPerPage}
+            rowsPerPageOptions={[5, 10, 20, 50]}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
 
         </CardContent>
+
       </Card>
 
     </Box>
+
   );
+
 };
 
 export default ReceptionDashboard;

@@ -25,13 +25,38 @@ const getPatientById = async (id) => {
   return response.data;
 };
 
-const getAllPatients = async () => {
+// const getAllPatients = async () => {
+//   const response = await axiosInstance.get(
+//     "/api/reception/patients"
+//   );
+
+//   return response.data;
+// };
+
+const getAllPatients = async (
+  pageNumber = 0,
+  pageSize = 10,
+  fromDate,
+  toDate
+) => {
+
   const response = await axiosInstance.get(
-    "/api/reception/patients"
+    "/api/reception/patients",
+    {
+      params: {
+        pageNumber,
+        pageSize,
+        fromDate: fromDate || undefined,
+        toDate: toDate || undefined,
+      },
+    }
   );
 
   return response.data;
 };
+
+export { getAllPatients };
+
 
 const updatePatient = async (id, data) => {
   const response = await axiosInstance.put(

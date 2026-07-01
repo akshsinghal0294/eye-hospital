@@ -9,7 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -74,12 +77,19 @@ public class PatientController {
      * Get All Patients
      */
     @GetMapping
-    public ResponseEntity<ApiResponse<List<PatientResponse>>> getAllPatients() {
+    public  ResponseEntity<ApiResponse<Page<PatientResponse>>> getAllPatients(
+        @RequestParam(defaultValue = "0") int pageNumber,
+        @RequestParam(defaultValue = "10") int pageSize,
+         @RequestParam(required = false)
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
+        @RequestParam(required = false)
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate
+     ) {
 
-        List<PatientResponse> response = patientService.getAllPatients();
+        Page<PatientResponse> response = patientService.getAllPatients(pageNumber, pageSize ,fromDate ,toDate);
 
         return ResponseEntity.ok(
-                ApiResponse.<List<PatientResponse>>builder()
+                ApiResponse.<Page<PatientResponse>>builder()
                         .success(true)
                         .message("Patients retrieved successfully.")
                         .data(response)

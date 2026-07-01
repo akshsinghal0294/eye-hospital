@@ -2,6 +2,7 @@ C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\enums\Role.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\security\JwtAuthenticationFilter.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\enums\Gender.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\dto\request\LoginRequest.java
+C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\dto\response\DashboardSummaryResponse.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\EyeHospitalApplication.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\dto\response\DoctorResponse.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\entity\OptometristRecord.java
@@ -39,6 +40,7 @@ C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\enums\ColourVisio
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\repository\VisitRepository.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\service\CodeGeneratorService.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\exception\ResourceNotFoundException.java
+C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\dto\response\DashboardActivityResponse.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\entity\AppUser.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\controller\VisitController.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\dto\response\AuthResponse.java

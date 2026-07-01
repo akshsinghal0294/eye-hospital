@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
+import Grid from "@mui/material/Grid";
 
 import {
   Alert,
@@ -11,7 +12,7 @@ import {
   CircularProgress,
   FormControl,
   FormHelperText,
-  Grid,
+ 
   IconButton,
   InputLabel,
   MenuItem,
@@ -63,6 +64,8 @@ const RegisterPatient = () => {
       const response = await patientApi.registerPatient(data);
 
       setRegisteredPatient(response.data);
+
+      
 
       setSuccess("Patient registered successfully");
 
@@ -207,9 +210,10 @@ const RegisterPatient = () => {
                 label="Date of Birth"
                 type="date"
                 fullWidth
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                slotProps={{ inputLabel: { shrink: true } }}
+                // InputLabelProps={{
+                //   shrink: true,
+                // }}
                 {...register("dateOfBirth")}
               />
             </Grid>
@@ -340,95 +344,131 @@ const RegisterPatient = () => {
               {success}
             </Alert>
           )}
-                    {registeredPatient && (
-            <Card
-              elevation={2}
-              sx={{
-                mt: 4,
-                borderRadius: 2,
-              }}
-            >
-              <CardContent>
+                   
+                   {registeredPatient && (
 
-                <Typography
-                  variant="h6"
-                  sx={{
-                    mb: 2,
-                  }}
-                >
-                  Registered Patient
+<Card
+    elevation={2}
+    sx={{
+        mt: 3,
+        borderRadius: 2
+    }}
+>
+
+    <CardContent>
+
+        <Typography
+            variant="h6"
+            sx={{ mb: 2 }}
+        >
+            Patient Registered Successfully
+        </Typography>
+
+        <Grid
+            container
+            spacing={2}
+        >
+
+            <Grid size={{ xs: 12, md: 4 }}>
+
+                <Typography variant="subtitle2">
+                    Name
                 </Typography>
 
-                <Grid
-                  container
-                  spacing={2}
-                >
-                  <Grid
-                    item
-                    xs={12}
-                    md={4}
-                  >
-                    <Typography variant="subtitle2">
-                      Name
-                    </Typography>
+                <Typography>
+                    {registeredPatient.name}
+                </Typography>
 
-                    <Typography>
-                      {registeredPatient.name}
-                    </Typography>
-                  </Grid>
+            </Grid>
 
-                  <Grid
-                    item
-                    xs={12}
-                    md={4}
-                  >
-                    <Typography variant="subtitle2">
-                      Mobile
-                    </Typography>
+            <Grid size={{ xs: 12, md: 4 }}>
 
-                    <Typography>
-                      {registeredPatient.mobile}
-                    </Typography>
-                  </Grid>
+                <Typography variant="subtitle2">
+                    Mobile
+                </Typography>
 
-                  <Grid
-                    item
-                    xs={12}
-                    md={4}
-                  >
-                    <Typography variant="subtitle2">
-                      Gender
-                    </Typography>
+                <Typography>
+                    {registeredPatient.mobile}
+                </Typography>
 
-                    <Typography>
-                      {registeredPatient.gender}
-                    </Typography>
-                  </Grid>
-                </Grid>
+            </Grid>
 
-                <Button
-                  variant="contained"
-                  color="success"
-                  fullWidth
-                  sx={{
-                    mt: 4,
-                    py: 1.5,
-                  }}
-                  onClick={() =>
-                    navigate("/reception/process-visit", {
-                      state: {
-                        patientId: registeredPatient.id,
-                        mobile: registeredPatient.mobile,
-                      },
-                    })
-                  }
-                >
-                  Process Visit for this Patient
-                </Button>
+            <Grid size={{ xs: 12, md: 4 }}>
 
-              </CardContent>
-            </Card>
-          )}
+                <Typography variant="subtitle2">
+                    Gender
+                </Typography>
+
+                <Typography>
+                    {registeredPatient.gender}
+                </Typography>
+
+            </Grid>
+
+        </Grid>
+
+        <Stack
+            direction={{
+                xs: "column",
+                md: "row"
+            }}
+            spacing={2}
+            sx={{
+                mt: 3
+            }}
+        >
+
+            <Button
+                variant="contained"
+                onClick={() =>
+                    navigate(
+                        "/reception/process-visit",
+                        {
+                            state: {
+                                mobile:
+                                    registeredPatient.mobile
+                            }
+                        }
+                    )
+                }
+            >
+                Process Visit
+            </Button>
+
+            <Button
+                variant="outlined"
+                onClick={() => {
+
+                    reset();
+
+                    setRegisteredPatient(null);
+
+                    setSuccess("");
+
+                    setError("");
+
+                }}
+            >
+                Register Another Patient
+            </Button>
+
+            <Button
+                variant="outlined"
+                onClick={() =>
+                    navigate("/reception")
+                }
+            >
+                Go to Dashboard
+            </Button>
+
+        </Stack>
+
+    </CardContent>
+
+</Card>
+
+)}
+
 
         </CardContent>
       </Card>

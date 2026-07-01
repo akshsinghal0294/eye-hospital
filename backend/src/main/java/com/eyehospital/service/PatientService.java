@@ -10,7 +10,13 @@ import com.eyehospital.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -61,12 +67,25 @@ public class PatientService {
     }
 
     @Transactional(readOnly = true)
-    public List<PatientResponse> getAllPatients() {
+    public Page<PatientResponse> getAllPatients(int pageNumber, int pageSize , LocalDate fromDate,
+        LocalDate toDate) {
 
-        return patientRepository.findAll()
-                .stream()
-                .map(this::mapToResponse)
-                .toList();
+            if (fromDate == null) {
+                fromDate = LocalDate.now();
+            }
+        
+            if (toDate == null) {
+                toDate = LocalDate.now();
+            }
+        
+            Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+            LocalDateTime fromDateTime = fromDate.atStartOfDay();
+            LocalDateTime toDateTime = toDate.atTime(LocalTime.MAX);
+
+         return patientRepository
+            .findByCreatedAtBetweenOrderByCreatedAtDesc(fromDateTime, toDateTime, pageable)
+            .map(this::mapToResponse);
     }
 
     public PatientResponse updatePatient(Long id, PatientRequest request) {
