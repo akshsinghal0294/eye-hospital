@@ -53,6 +53,8 @@ const ReceptionDashboard = () => {
 
   const [toDate, setToDate] = useState("");
 
+  const [mobile, setMobile] = useState("");
+
   const statCards = [
     {
       title: "Total Patients Today",
@@ -89,13 +91,14 @@ const ReceptionDashboard = () => {
       const response = await getAllPatients(
         page,
         rowsPerPage,
+        mobile,
         fromDate,
         toDate
-    );
+      );
 
-    setPatients(response.data.content);
+      setPatients(response.data.content);
 
-    setTotalRows(response.data.totalElements);
+      setTotalRows(response.data.totalElements);
 
     } catch (error) {
 
@@ -315,9 +318,9 @@ const ReceptionDashboard = () => {
         </CardContent>
 
       </Card>
-            {/* Recent Patients */}
+      {/* Recent Patients */}
 
-            <Card
+      <Card
         elevation={3}
         sx={{
           borderRadius: 3,
@@ -343,6 +346,16 @@ const ReceptionDashboard = () => {
             spacing={2}
             mb={3}
           >
+            <TextField
+    label="Mobile Number"
+    value={mobile}
+    onChange={(e) => setMobile(e.target.value)}
+    onKeyDown={(e) => {
+        if (e.key === "Enter") {
+            handleSearch();
+        }
+    }}
+/>
 
             <TextField
               label="From Date"
@@ -494,7 +507,7 @@ const ReceptionDashboard = () => {
               </TableContainer>
 
           }
-                    <TablePagination
+          <TablePagination
             component="div"
             count={totalRows}
             page={page}

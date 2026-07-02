@@ -35,6 +35,7 @@ C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\controller\Optome
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\dto\request\MedicineRequest.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\controller\PatientController.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\service\OptometristService.java
+C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\specification\PatientSpecification.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\service\AttachmentService.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\enums\ColourVision.java
 C:\Projects\eye-hospital\backend\src\main\java\com\eyehospital\repository\VisitRepository.java

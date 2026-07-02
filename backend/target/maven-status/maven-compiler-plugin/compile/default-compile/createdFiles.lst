@@ -28,7 +28,6 @@ com\eyehospital\dto\request\RegisterRequest$RegisterRequestBuilder.class
 com\eyehospital\entity\DoctorRecord.class
 com\eyehospital\dto\response\OptometristResponse$OptometristResponseBuilder.class
 com\eyehospital\dto\request\MedicineRequest$MedicineRequestBuilder.class
-com\eyehospital\controller\PatientController.class
 com\eyehospital\security\JwtAuthenticationFilter.class
 com\eyehospital\dto\response\ApiResponse.class
 com\eyehospital\controller\DoctorController.class
@@ -82,7 +81,6 @@ com\eyehospital\dto\response\AttachmentResponse$AttachmentResponseBuilder.class
 com\eyehospital\repository\DoctorRecordRepository.class
 com\eyehospital\entity\Attachment.class
 com\eyehospital\entity\AppUser.class
-com\eyehospital\service\PatientService.class
 com\eyehospital\entity\Visit.class
 com\eyehospital\dto\request\OptometristRequest.class
 com\eyehospital\enums\Gender.class

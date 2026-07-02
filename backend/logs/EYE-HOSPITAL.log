@@ -1,34 +1,6 @@
-2026-07-01T01:53:42.633+05:30  WARN 40512 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h20m32s832ms867탎800ns).
-2026-07-01T07:23:45.690+05:30  WARN 40512 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h30m13s231ms846탎600ns).
-2026-07-01T09:17:23.039+05:30  WARN 40512 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h53m37s350ms57탎600ns).
-2026-07-01T09:39:10.812+05:30  WARN 40512 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=21m47s773ms761탎500ns).
-2026-07-01T09:41:00.674+05:30  INFO 40512 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-07-01T09:41:00.739+05:30  INFO 40512 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-07-01T09:41:00.776+05:30  INFO 40512 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-07-01T09:42:51.803+05:30  INFO 20600 --- [main] com.eyehospital.EyeHospitalApplication   : Starting EyeHospitalApplication using Java 17.0.19 with PID 20600 (C:\Projects\eye-hospital\backend\target\classes started by AkshSinghal in C:\Projects\eye-hospital\backend)
-2026-07-01T09:42:51.805+05:30 DEBUG 20600 --- [main] com.eyehospital.EyeHospitalApplication   : Running with Spring Boot v3.2.6, Spring v6.1.8
-2026-07-01T09:42:51.811+05:30  INFO 20600 --- [main] com.eyehospital.EyeHospitalApplication   : No active profile set, falling back to 1 default profile: "default"
-2026-07-01T09:42:52.796+05:30  INFO 20600 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-07-01T09:42:52.859+05:30  INFO 20600 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 7 JPA repository interfaces.
-2026-07-01T09:42:53.448+05:30  INFO 20600 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-07-01T09:42:53.459+05:30  INFO 20600 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-07-01T09:42:53.460+05:30  INFO 20600 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
-2026-07-01T09:42:53.535+05:30  INFO 20600 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-07-01T09:42:53.536+05:30  INFO 20600 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1661 ms
-2026-07-01T09:42:53.666+05:30  INFO 20600 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-07-01T09:42:53.745+05:30  INFO 20600 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.8.Final
-2026-07-01T09:42:53.784+05:30  INFO 20600 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-07-01T09:42:54.026+05:30  INFO 20600 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-07-01T09:42:54.054+05:30  INFO 20600 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-07-01T09:42:54.252+05:30  INFO 20600 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@134abd78
-2026-07-01T09:42:54.254+05:30  INFO 20600 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-07-01T09:42:55.522+05:30  INFO 20600 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-07-01T09:42:55.704+05:30  INFO 20600 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-07-01T09:42:56.119+05:30 DEBUG 20600 --- [main] c.e.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
-2026-07-01T09:42:56.427+05:30  WARN 20600 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-07-01T09:42:56.864+05:30  INFO 20600 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5d160056, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c555efb, org.springframework.security.web.context.SecurityContextHolderFilter@5350a926, org.springframework.security.web.header.HeaderWriterFilter@5c168f98, org.springframework.web.filter.CorsFilter@17796f47, org.springframework.security.web.authentication.logout.LogoutFilter@174e5929, com.eyehospital.security.JwtAuthenticationFilter@21a462ce, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7c046af, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c883b3f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@369f85c6, org.springframework.security.web.session.SessionManagementFilter@57fe6f2d, org.springframework.security.web.access.ExceptionTranslationFilter@30ae3c46, org.springframework.security.web.access.intercept.AuthorizationFilter@1c8da7e8]
-2026-07-01T09:42:57.232+05:30  INFO 20600 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-07-01T09:42:57.245+05:30  INFO 20600 --- [main] com.eyehospital.EyeHospitalApplication   : Started EyeHospitalApplication in 5.973 seconds (process running for 6.367)
-2026-07-01T09:43:06.962+05:30  INFO 20600 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-01T09:43:06.962+05:30  INFO 20600 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-07-01T09:43:06.965+05:30  INFO 20600 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-07-02T02:44:11.880+05:30  WARN 19888 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h24s867ms57탎700ns).
+2026-07-02T05:54:49.060+05:30  WARN 19888 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h10m46s454ms867탎200ns).
+2026-07-02T06:02:22.095+05:30  INFO 19888 --- [http-nio-8080-exec-10] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 2298 ms
+2026-07-02T06:17:41.517+05:30  INFO 19888 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-02T06:17:41.548+05:30  INFO 19888 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-02T06:17:41.556+05:30  INFO 19888 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

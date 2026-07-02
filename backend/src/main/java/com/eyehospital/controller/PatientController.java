@@ -80,13 +80,14 @@ public class PatientController {
     public  ResponseEntity<ApiResponse<Page<PatientResponse>>> getAllPatients(
         @RequestParam(defaultValue = "0") int pageNumber,
         @RequestParam(defaultValue = "10") int pageSize,
+        @RequestParam(required = false) String mobile,
          @RequestParam(required = false)
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
         @RequestParam(required = false)
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate
      ) {
 
-        Page<PatientResponse> response = patientService.getAllPatients(pageNumber, pageSize ,fromDate ,toDate);
+        Page<PatientResponse> response = patientService.getAllPatients(pageNumber, pageSize ,mobile,fromDate ,toDate);
 
         return ResponseEntity.ok(
                 ApiResponse.<Page<PatientResponse>>builder()

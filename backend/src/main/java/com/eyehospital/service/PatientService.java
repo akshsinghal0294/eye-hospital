@@ -10,9 +10,12 @@ import com.eyehospital.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import com.eyehospital.specification.PatientSpecification;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -67,25 +70,34 @@ public class PatientService {
     }
 
     @Transactional(readOnly = true)
-    public Page<PatientResponse> getAllPatients(int pageNumber, int pageSize , LocalDate fromDate,
+    public Page<PatientResponse> getAllPatients(int pageNumber, int pageSize ,String  mobile, LocalDate fromDate,
         LocalDate toDate) {
 
-            if (fromDate == null) {
-                fromDate = LocalDate.now();
+            LocalDateTime fromDateTime = null;
+            LocalDateTime toDateTime = null;
+            if (fromDate != null) {
+                fromDateTime = fromDate.atStartOfDay();
             }
-        
-            if (toDate == null) {
-                toDate = LocalDate.now();
+            
+            if (toDate != null) {
+                toDateTime = toDate.atTime(LocalTime.MAX);
             }
-        
-            Pageable pageable = PageRequest.of(pageNumber, pageSize);
+            
 
-            LocalDateTime fromDateTime = fromDate.atStartOfDay();
-            LocalDateTime toDateTime = toDate.atTime(LocalTime.MAX);
+            Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "createdAt"));
 
-         return patientRepository
-            .findByCreatedAtBetweenOrderByCreatedAtDesc(fromDateTime, toDateTime, pageable)
-            .map(this::mapToResponse);
+
+            Specification<Patient> specification =
+        PatientSpecification.searchPatients(
+                mobile,
+                fromDateTime,
+                toDateTime);
+
+                Page<Patient> patientPage =
+        patientRepository.findAll(specification, pageable);
+
+         
+         return patientPage.map(this::mapToResponse);
     }
 
     public PatientResponse updatePatient(Long id, PatientRequest request) {

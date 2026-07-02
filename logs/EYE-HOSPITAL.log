@@ -1,28 +1,43 @@
-2026-06-29T16:43:51.674+05:30  INFO 25956 --- [main] com.eyehospital.EyeHospitalApplication   : Starting EyeHospitalApplication using Java 17.0.19 with PID 25956 (C:\Projects\eye-hospital\backend\target\classes started by AkshSinghal in C:\Projects\eye-hospital)
-2026-06-29T16:43:51.677+05:30 DEBUG 25956 --- [main] com.eyehospital.EyeHospitalApplication   : Running with Spring Boot v3.2.6, Spring v6.1.8
-2026-06-29T16:43:51.678+05:30  INFO 25956 --- [main] com.eyehospital.EyeHospitalApplication   : No active profile set, falling back to 1 default profile: "default"
-2026-06-29T16:43:53.755+05:30  INFO 25956 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-29T16:43:53.874+05:30  INFO 25956 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106 ms. Found 7 JPA repository interfaces.
-2026-06-29T16:43:55.215+05:30  INFO 25956 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-06-29T16:43:55.248+05:30  INFO 25956 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-06-29T16:43:55.249+05:30  INFO 25956 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
-2026-06-29T16:43:55.423+05:30  INFO 25956 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-06-29T16:43:55.424+05:30  INFO 25956 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3630 ms
-2026-06-29T16:43:55.696+05:30  INFO 25956 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-29T16:43:55.865+05:30  INFO 25956 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.8.Final
-2026-06-29T16:43:55.953+05:30  INFO 25956 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-06-29T16:43:56.533+05:30  INFO 25956 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-29T16:43:56.605+05:30  INFO 25956 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-06-29T16:43:56.899+05:30  INFO 25956 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2b35c7aa
-2026-06-29T16:43:56.901+05:30  INFO 25956 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-06-29T16:43:58.710+05:30  INFO 25956 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-29T16:43:58.892+05:30  INFO 25956 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-29T16:43:59.446+05:30 DEBUG 25956 --- [main] c.e.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
-2026-06-29T16:44:00.054+05:30  WARN 25956 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-29T16:44:00.683+05:30  INFO 25956 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@63ead376, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a1d7832, org.springframework.security.web.context.SecurityContextHolderFilter@7aecff85, org.springframework.security.web.header.HeaderWriterFilter@64547a83, org.springframework.web.filter.CorsFilter@639c5ab4, org.springframework.security.web.authentication.logout.LogoutFilter@6e43c01f, com.eyehospital.security.JwtAuthenticationFilter@755a4ef5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f0381cd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7eb006bd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@272cec71, org.springframework.security.web.session.SessionManagementFilter@42516ce2, org.springframework.security.web.access.ExceptionTranslationFilter@738b93a8, org.springframework.security.web.access.intercept.AuthorizationFilter@48463900]
-2026-06-29T16:44:01.188+05:30  INFO 25956 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-06-29T16:44:01.219+05:30  INFO 25956 --- [main] com.eyehospital.EyeHospitalApplication   : Started EyeHospitalApplication in 10.293 seconds (process running for 10.922)
-2026-06-29T16:44:12.363+05:30  INFO 25956 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-06-29T16:44:12.365+05:30  INFO 25956 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-06-29T16:44:12.369+05:30  INFO 25956 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2026-06-29T16:44:16.118+05:30  INFO 25956 --- [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 2447 ms
+2026-07-01T13:53:51.192+05:30  INFO 13684 --- [main] com.eyehospital.EyeHospitalApplication   : Starting EyeHospitalApplication using Java 17.0.19 with PID 13684 (C:\Projects\eye-hospital\backend\target\classes started by AkshSinghal in C:\Projects\eye-hospital)
+2026-07-01T13:53:51.202+05:30 DEBUG 13684 --- [main] com.eyehospital.EyeHospitalApplication   : Running with Spring Boot v3.2.6, Spring v6.1.8
+2026-07-01T13:53:51.204+05:30  INFO 13684 --- [main] com.eyehospital.EyeHospitalApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-07-01T13:53:52.978+05:30  INFO 13684 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-01T13:53:53.094+05:30  INFO 13684 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 100 ms. Found 7 JPA repository interfaces.
+2026-07-01T13:53:54.381+05:30  INFO 13684 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-01T13:53:54.406+05:30  INFO 13684 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-01T13:53:54.407+05:30  INFO 13684 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
+2026-07-01T13:53:54.576+05:30  INFO 13684 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-01T13:53:54.578+05:30  INFO 13684 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3285 ms
+2026-07-01T13:53:54.846+05:30  INFO 13684 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-01T13:53:54.968+05:30  INFO 13684 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.8.Final
+2026-07-01T13:53:55.033+05:30  INFO 13684 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-01T13:53:55.530+05:30  INFO 13684 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-01T13:53:55.588+05:30  INFO 13684 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-01T13:53:55.949+05:30  INFO 13684 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@79308a2
+2026-07-01T13:53:55.952+05:30  INFO 13684 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-01T13:53:57.728+05:30  INFO 13684 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-01T13:53:57.867+05:30  INFO 13684 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-01T13:53:58.484+05:30 DEBUG 13684 --- [main] c.e.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2026-07-01T13:53:59.114+05:30  WARN 13684 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-01T13:53:59.683+05:30  INFO 13684 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@504a9352, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@48e1e18a, org.springframework.security.web.context.SecurityContextHolderFilter@758e6acd, org.springframework.security.web.header.HeaderWriterFilter@22025464, org.springframework.web.filter.CorsFilter@74997ca6, org.springframework.security.web.authentication.logout.LogoutFilter@29b61bb, com.eyehospital.security.JwtAuthenticationFilter@72fa021, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@28592982, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@caee26e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7a6078d, org.springframework.security.web.session.SessionManagementFilter@174e5929, org.springframework.security.web.access.ExceptionTranslationFilter@6345dc06, org.springframework.security.web.access.intercept.AuthorizationFilter@64ef9b9a]
+2026-07-01T13:54:00.238+05:30  WARN 13684 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-07-01T13:54:00.242+05:30  INFO 13684 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-01T13:54:00.247+05:30  INFO 13684 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-07-01T13:54:00.258+05:30  INFO 13684 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-07-01T13:54:00.287+05:30  INFO 13684 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-01T13:54:00.330+05:30 ERROR 13684 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+

@@ -36,6 +36,7 @@ const getPatientById = async (id) => {
 const getAllPatients = async (
   pageNumber = 0,
   pageSize = 10,
+  mobile,
   fromDate,
   toDate
 ) => {
@@ -46,6 +47,7 @@ const getAllPatients = async (
       params: {
         pageNumber,
         pageSize,
+        mobile,
         fromDate: fromDate || undefined,
         toDate: toDate || undefined,
       },
